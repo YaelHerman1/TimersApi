@@ -1,0 +1,85 @@
+# Timer API
+
+The Timer API is a web API built using ASP.NET Core that allows you to set timers and retrieve their status. It provides two endpoints: "Set Timer" for creating new timers and "Get Timer Status" for checking the remaining time of a timer.
+
+## Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+- [Endpoints](#endpoints)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Prerequisites
+
+Before running the Timer API, ensure you have the following prerequisites installed on your system:
+
+- [.NET SDK](https://dotnet.microsoft.com/download) - Version 5.0 or later.
+- [PostgreSQL](https://www.postgresql.org/download/) - A PostgreSQL database for storing timer data.
+
+## Getting Started
+
+Follow these steps to set up and run the Timer API:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/timer-api.git
+cd timer-api
+
+2. Install the required NuGet packages:
+  dotnet restore
+
+3. Configure the PostgreSQL database:
+   Set up a PostgreSQL database and create a new database for the Timer API. Update the connection string in the appsettings.json file with your PostgreSQL credentials.
+
+4. Run the migrations:
+   Apply the database migrations to create the necessary tables for the Timer API.
+   dotnet ef database update
+
+5.Build and run the API:
+  dotnet run
+
+The Timer API should now be running and accessible at https://localhost:5001 (with SSL) or http://localhost:5000 (without SSL).
+
+Running with Docker
+To run the Timer API using Docker, follow these steps:
+
+## Building and Running the Docker Container
+
+1. Open a terminal or command prompt.
+2. Build the Docker image using the following command:
+
+   docker build -t timer-api .
+   
+3. Run the Docker container using the following command:
+
+docker run -d -p 5000:80 --name timer-api-container timer-api
+
+The Timer API should now be accessible at http://localhost:5000.
+
+Usage:
+Swagger:
+1. Launch the application Swagger in your web browser http://localhost:[portNumber]/swagger/index.html
+2. The Swagger UI page will be displayed, showing the available endpoints and operations.
+
+Once the Timer API is running, you can use any API client (such as Postman or curl) to interact with the endpoints. The Swagger documentation is available at https://localhost:5001/swagger (with SSL) or http://localhost:5000/swagger (without SSL), providing a user-friendly interface to explore and test the API.
+
+Endpoints:
+
+Set Timer
+Method: POST
+URL: /api/timer/SetTimer
+Request Body: JSON object with the timer details (hours, minutes, seconds, and web URL).
+Response: JSON object containing the unique ID of the created timer.
+
+Get Timer Status
+Method: GET
+URL: /api/timer/GetTimerStatus/{id}
+URL Parameter: Timer ID (integer) to check the status of the timer.
+Response: JSON object containing the number of seconds left until the timer expires.
+
+
+
+
