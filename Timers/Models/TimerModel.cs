@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Timers.Models
 {
-    // Timer.cs
     public class TimerModel
     {
+        [Key]
         public string Id { get; set; }
         public int Hours { get; set; }
         public int Minutes { get; set; }
