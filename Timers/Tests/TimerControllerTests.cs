@@ -37,7 +37,7 @@ namespace Timers.Tests
                 Seconds = 0,
                 WebUrl = "http://example.com/webhook"
             };
-            int timerId = 1;
+            string timerId = "1";
             _mockRepository.Setup(repo => repo.AddTimerAsync(It.IsAny<TimerModel>()))
                            .ReturnsAsync(timerId);
 
@@ -53,7 +53,7 @@ namespace Timers.Tests
         public async Task GetTimerStatus_ExistingTimerId_ReturnsOkResultWithSecondsLeft()
         {
             // Arrange
-            int timerId = 1;
+            string timerId = "1";
             var timer = new TimerModel
             {
                 Id = timerId,
@@ -76,7 +76,7 @@ namespace Timers.Tests
         public async Task GetTimerStatus_NonExistingTimerId_ReturnsNotFoundResult()
         {
             // Arrange
-            int timerId = 1;
+            string timerId = "1";
             _mockRepository.Setup(repo => repo.GetTimerByIdAsync(timerId))
                            .ReturnsAsync((TimerModel)null);
 
@@ -130,7 +130,7 @@ namespace Timers.Tests
         public async Task GetTimerByIdAsync_ExistingTimerId_ReturnsTimerModel()
         {
             // Arrange
-            int timerId = 1;
+            string timerId = "1";
             var timer = new TimerModel
             {
                 Id = timerId,
@@ -150,7 +150,7 @@ namespace Timers.Tests
         public async Task GetTimerByIdAsync_NonExistingTimerId_ReturnsNull()
         {
             // Arrange
-            int timerId = 1;
+            string timerId = "1";
             _mockDbContext.Setup(db => db.Timers.FindAsync(timerId))
                           .ReturnsAsync((TimerModel)null);
 

@@ -35,6 +35,7 @@ namespace Timers.Controllers
 
             var timer = new TimerModel
             {
+                Id = Guid.NewGuid().ToString(),
                 Hours = timerInput.Hours,
                 Minutes = timerInput.Minutes,
                 Seconds = timerInput.Seconds,
@@ -42,7 +43,7 @@ namespace Timers.Controllers
                 ExpiryTime = expiryTime
             };
 
-            int timerId = await _timerRepository.AddTimerAsync(timer);
+            string timerId = await _timerRepository.AddTimerAsync(timer);
 
             return Ok(new { id = timerId });
         }
@@ -53,7 +54,7 @@ namespace Timers.Controllers
         /// <param name="id">The ID of the timer to check.</param>
         /// <returns>The number of seconds left until the timer expires.</returns>
         [HttpGet("GetTimerStatus/{id}")]
-        public async Task<IActionResult> GetTimerStatus(int id)
+        public async Task<IActionResult> GetTimerStatus(string id)
         {
             var timer = await _timerRepository.GetTimerByIdAsync(id);
 

@@ -6,7 +6,7 @@ namespace Timers.Models
     // Timer.cs
     public class TimerModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public int Hours { get; set; }
         public int Minutes { get; set; }
         public int Seconds { get; set; }
